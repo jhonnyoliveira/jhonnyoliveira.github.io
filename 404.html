@@ -1,25 +1,30 @@
 ---
+# The 404 page
+# v2.0
+# https://github.com/cotes2020/jekyll-theme-chirpy
+# © 2017-2019 Cotes Chung
+# MIT License
+layout: page
+title: "404: Eita! Página não encontrada"
 permalink: /404.html
-layout: default
+
+redirect_from: # part of site.sitemap_exclude
+  - /norobots/
+  - /assets/
+  - /tabs/
+  - /categorias/
+  - /tags/
+  - /posts/
+
+dynamic_title: true
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+<div class="lead">
+  <p>
+    Desculpe amigo, mas a página que você tento acessar não existe.
+  </p>
+  <p>
+    <a href="{{ site.baseurl }}/">Voltar para a home</a> e tentar novamente, ou
+    procurar nos <a href="{{ site.baseurl }}/tabs/archivo">arquivos do site</a>.
+  </p>
 </div>
