@@ -1,0 +1,9 @@
+services:
+  dev:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    volumes:
+      - ./:/hugo
+    ports:
+      - 8080:8080

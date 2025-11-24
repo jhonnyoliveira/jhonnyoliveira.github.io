@@ -1,0 +1,37 @@
+FROM golang:latest
+
+# Define variáveis de ambiente para evitar prompts interativos durante a instalação.
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        ca-certificates \
+        git  && \
+    
+    # 1. Instalação do Node.js (Versão Mais Recente LTS)
+    # Adiciona o repositório oficial do NodeSource.
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs hugo && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    npm install -g sass
+   
+
+# Cria um grupo e usuário chamado "appuser"
+# -r → usuário do sistema (sem expiração)
+# -m → cria diretório home
+# -d → define o diretório home
+# -s → define o shell (bash)
+RUN groupadd -r appuser && \
+useradd -r -g appuser -m -d /home/appuser -s /bin/bash appuser
+
+WORKDIR /hugo
+
+RUN chown -R appuser:appuser /hugo
+
+USER appuser
+
+# Define um ponto de entrada padrão ou apenas um shell.
+CMD ["/bin/bash"]
